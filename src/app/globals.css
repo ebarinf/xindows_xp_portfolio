@@ -2,7 +2,9 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: hsl(0, 0%, 9%);
+  --xp-blue: #0a4aa9;
+  --xp-bg: #c0d6f8;
 }
 
 @theme inline {
@@ -10,11 +12,13 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-xp: "Franklin Gothic", Arial, sans-serif;
+  --font-xp-bold: "Franklin Gothic Heavy", "Segoe UI", Arial, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #002cad;
     --foreground: #ededed;
   }
 }
@@ -23,4 +27,31 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+/* ============================
+    Windows XP Loading Bar
+============================ */
+
+.xp-loader {
+  width: 200px;
+  height: 20px;
+  border: 2px solid #b2b2b2;
+  border-radius: 7px;
+  margin: 0 auto;
+  padding: 2px 1px;
+  overflow: hidden;
+  font-size: 0;
+}
+
+.xp-loader .bar {
+  width: 9px;
+  height: 100%;
+  background: linear-gradient(to bottom, #2838c7 0%,#5979ef 17%,#869ef3 32%,#869ef3 45%,#5979ef 59%,#2838c7 100%);
+  display: inline-block;
+  margin-right: 2px;
+  animation: loader 2.5s infinite;
+  animation-timing-function: linear;
 }
