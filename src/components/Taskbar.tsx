@@ -19,7 +19,7 @@ export default function Taskbar() {
         <div className="absolute bottom-0 left-0 w-full h-[30px] flex select-none z-50">
         
         {/* START BUTTON */}
-        <button className="h-[30px] flex items-center justify-center gap-1 px-3 pr-4 bg-gradient-to-b from-[#3c8939] via-[#4db047] to-[#2a7326] rounded-tr-[15px] rounded-br-[15px] border-t-[1px] border-t-[#8ae87f] shadow-[inset_0_0_2px_rgba(255,255,255,0.4),3px_0_4px_rgba(0,0,0,0.3)] hover:brightness-110 active:brightness-90 transition-all z-20">
+        <button className="h-[30px] flex items-center justify-center gap-1 px-3 pr-4 bg-gradient-to-b from-[#3c8939] via-[#4db047] to-[#2a7326] rounded-tr-[10px] rounded-br-[10px] border-t-[1px] border-t-[#8ae87f] shadow-[inset_0_0_2px_rgba(255,255,255,0.4),3px_0_4px_rgba(0,0,0,0.3)] hover:brightness-110 active:brightness-90 transition-all z-20">
             <Image src="/icons/windows_xp_classic.ico" alt="Start" width={18} height={18} className="drop-shadow-md" />
             <span 
             className="text-white font-bold italic text-[17px] tracking-wider pr-1" 

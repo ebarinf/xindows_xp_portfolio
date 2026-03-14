@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DesktopIcon from "../components/DesktopIcon";
 import Taskbar from "../components/Taskbar";
 import Window from "../components/Window";
@@ -13,6 +13,13 @@ const DESKTOP_ICONS = [
 
 export default function Desktop() {
     const [openWindows, setOpenWindows] = useState<string[]>([]);
+
+    useEffect(() => {
+        const startupAudio = new Audio('/sounds/startup.mp3');
+        startupAudio.play().catch((error) => {
+            console.log("Audio autoplay blocked by browser:", error);
+        });
+    }, []);
 
     const handleIconClick = (id: string) => {
         if (!openWindows.includes(id)) {
