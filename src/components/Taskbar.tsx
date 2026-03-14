@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 export default function Taskbar() {
     const [time, setTime] = useState<string>("");
 
-    // Simple clock logic
     useEffect(() => {
         const updateTime = () => {
         const now = new Date();
@@ -19,25 +18,26 @@ export default function Taskbar() {
     return (
         <div className="absolute bottom-0 left-0 w-full h-[30px] flex select-none z-50">
         
-        {/* Main Taskbar Background (Blue Gradient) */}
-        <div className="flex-1 flex bg-gradient-to-b from-[#245EDC] via-[#3f7cf3] to-[#245EDC] border-t border-[#467FF0]">
-            
-            {/* Start Button */}
-            <button className="h-full flex items-center justify-center gap-1 px-2 pr-4 bg-gradient-to-b from-[#3E9F4C] via-[#4CB25A] to-[#388D43] rounded-r-xl border-r border-white/30 shadow-[inset_0px_1px_2px_rgba(255,255,255,0.6)] hover:brightness-110 active:brightness-90 transition-all">
-            <Image src="/icons/windows_xp_classic.ico" alt="Start" width={18} height={18} className="drop-shadow-sm" />
-            <span className="text-white font-bold italic text-sm drop-shadow-md">start</span>
-            </button>
+        {/* START BUTTON */}
+        <button className="h-[30px] flex items-center justify-center gap-1 px-3 pr-4 bg-gradient-to-b from-[#3c8939] via-[#4db047] to-[#2a7326] rounded-tr-[15px] rounded-br-[15px] border-t-[1px] border-t-[#8ae87f] shadow-[inset_0_0_2px_rgba(255,255,255,0.4),3px_0_4px_rgba(0,0,0,0.3)] hover:brightness-110 active:brightness-90 transition-all z-20">
+            <Image src="/icons/windows_xp_classic.ico" alt="Start" width={18} height={18} className="drop-shadow-md" />
+            <span 
+            className="text-white font-bold italic text-[17px] tracking-wider pr-1" 
+            style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.8)" }}
+            >
+            start
+            </span>
+        </button>
 
-            {/* Open Apps Area (Empty for now) */}
-            <div className="flex-1 px-2 flex items-center gap-1">
-            {/* We will map open Window tabs here later */}
-            </div>
+        <div className="flex-1 h-[30px] bg-gradient-to-b from-[#245edc] via-[#3f7cf3] to-[#1240b9] border-t-[1px] border-t-[#91a6f3] flex items-center px-4 z-10 -ml-3">
+
         </div>
 
-        {/* System Tray (Light Blue/Teal Gradient) */}
-        <div className="h-full flex items-center px-3 bg-gradient-to-b from-[#0C59B9] via-[#139EE9] to-[#0C59B9] border-l border-[#1042AF] text-white text-xs shadow-[inset_1px_0px_1px_rgba(255,255,255,0.3)]">
-            <span className="drop-shadow-md cursor-default">{time}</span>
+        {/* SYSTEM TRAY */}
+        <div className="h-[30px] flex items-center px-4 bg-gradient-to-b from-[#0f5fc8] via-[#158de4] to-[#0e55b5] border-l border-[#0a357f] border-t-[1px] border-t-[#78c0ed] shadow-[inset_1px_0px_0px_#4eb6f3] text-white text-xs z-10">
+            <span className="cursor-default drop-shadow-sm">{time}</span>
         </div>
+        
         </div>
     );
 }
