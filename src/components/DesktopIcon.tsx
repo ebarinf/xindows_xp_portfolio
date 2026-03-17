@@ -4,13 +4,13 @@ import Image from "next/image";
 interface DesktopIconProps {
     icon: string;
     label: string;
-    onDoubleClick?: () => void;
+    onClick?: () => void;
 }
 
-export default function DesktopIcon({ icon, label, onDoubleClick }: DesktopIconProps) {
+export default function DesktopIcon({ icon, label, onClick }: DesktopIconProps) {
     return (
         <div 
-        onDoubleClick={onDoubleClick}
+        onClick={onClick}
         className="flex flex-col items-center justify-start w-20 p-1 mb-2 cursor-pointer group"
         >
         <div className="relative w-10 h-10 mb-1 opacity-90 group-hover:opacity-100">

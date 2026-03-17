@@ -41,7 +41,7 @@ export default function Desktop() {
                     key={item.id}
                     icon={item.icon}
                     label={item.label}
-                    onDoubleClick={() => handleIconClick(item.id)} // Opens the window
+                    onClick={() => handleIconClick(item.id)} // Opens the window
                 />
             ))}
         </div>
