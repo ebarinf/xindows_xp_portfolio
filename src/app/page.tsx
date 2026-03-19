@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import WindowsXPLoader from "../components/WindowsXPLoader";
-import LoginScreen from "../components/LoginScreen"; // We will create this next!
+import LoginScreen from "../components/LoginScreen";
 import Desktop from "@/components/Desktop";
 
 type SystemState = "boot" | "login" | "desktop";

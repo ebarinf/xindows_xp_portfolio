@@ -16,7 +16,7 @@ export default function Window({
     icon, 
     onClose, 
     children, 
-    initialX = 150,
+    initialX = 0,
     initialY = 50
     }: WindowProps) {
     
@@ -70,7 +70,7 @@ export default function Window({
 
     return (
         <div 
-        className="absolute w-[1200px] h-[800px] bg-[#ECE9D8] border-[3px] border-[#0054E3] rounded-t-lg shadow-2xl flex flex-col overflow-hidden z-40"
+        className="absolute w-[100%] md:w-[60%] h-[80%] bg-[#ECE9D8] border-[3px] border-[#0054E3] rounded-t-lg shadow-2xl flex flex-col overflow-hidden z-40"
         style={{ 
             left: `${position.x}px`, 
             top: `${position.y}px`,

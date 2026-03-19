@@ -32,7 +32,7 @@ export default function Desktop() {
     };
 
     return (
-        <div className="relative h-screen w-screen overflow-hidden bg-[url('/wallpaper.png')] bg-cover bg-center bg-no-repeat font-sans">
+        <div className="relative h-screen w-screen overflow-hidden bg-[url('/wallpaper_mobile.png')] md:bg-[url('/wallpaper.png')] bg-cover bg-center bg-no-repeat font-sans">
         
         {/* Desktop Icons */}
         <div className="absolute inset-0 p-2 flex flex-col flex-wrap content-start gap-1 pb-[30px] z-0">

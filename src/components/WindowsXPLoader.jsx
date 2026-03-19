@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect } from "react";
 
 export default function WindowsXPLoader({ onComplete }) {
@@ -29,7 +30,7 @@ export default function WindowsXPLoader({ onComplete }) {
         >
             <div className="flex flex-col items-start">
                 <div className="h-[150px] ml-38">
-                    <img
+                    <Image
                         src="/icons/windows_xp_big.png"
                         alt="Windows XP icon"
                         width={180}
