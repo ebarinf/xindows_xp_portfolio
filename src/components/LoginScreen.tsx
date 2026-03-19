@@ -8,7 +8,7 @@ interface LoginScreenProps {
 
 export default function LoginScreen({ onLogin }: LoginScreenProps) {
     return (
-        <div className="h-screen w-screen flex flex-col font-sans select-none overflow-hidden bg-[#5A7EDC]">
+        <div className="h-dvh w-screen flex flex-col font-sans select-none overflow-hidden bg-[#5A7EDC]">
         
         {/* --- TOP BAR --- */}
         <div className="h-16 md:h-24 bg-[#00309C] w-full shadow-md border-b-2 border-[#6384D3]" />
