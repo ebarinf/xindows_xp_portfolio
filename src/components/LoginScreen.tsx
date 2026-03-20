@@ -28,11 +28,11 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
                 alt="Windows XP Logo" 
                 width={100} 
                 height={100}
-                className="mb-2 w-20 h-20 md:w-[100px] md:h-[100px]"
+                className="w-20 h-20 md:w-[100px] md:h-[100px]"
                 />
                 <div className="text-white text-3xl md:text-4xl font-bold drop-shadow-md mb-2 md:mb-6 leading-none">
-                Eduardo<span className="text-[#F57B26] font-normal italic">xp</span>
-                <div className="text-base md:text-lg font-normal opacity-80 mt-1">
+                Eduardo<span className="text-[#F57B26] font-normal">xp</span>
+                <div className="text-left italic text-sm md:text-lg font-normal opacity-80 ml-1">
                     Web Developer
                 </div>
                 </div>
