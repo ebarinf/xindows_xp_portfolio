@@ -23,7 +23,7 @@ export default function DesktopIcon({ icon, label, onClick }: DesktopIconProps) 
         </div>
         <span 
             className="text-white text-xs text-center leading-tight px-1 rounded-sm group-hover:bg-[#316AC5] group-hover:bg-opacity-60"
-            style={{ textShadow: "1px 1px 2px black" }} // Classic XP text shadow
+            style={{ textShadow: "1px 1px 2px black" }}
         >
             {label}
         </span>

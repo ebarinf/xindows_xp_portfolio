@@ -3,16 +3,18 @@ import { useEffect, useState } from "react";
 import DesktopIcon from "../components/DesktopIcon";
 import Taskbar from "../components/Taskbar";
 import Window from "../components/Window";
-
-const DESKTOP_ICONS = [
-    { id: 'about', label: 'About Me', icon: '/icons/info.ico' },
-    { id: 'projects', label: 'My Projects', icon: '/icons/iexplorer.ico' },
-    { id: 'resume', label: 'My Resume', icon: '/icons/PDF.ico' }, // Update extension if you have a specific resume icon
-    { id: 'contact', label: 'Contact Me', icon: '/icons/msn.ico' },
-    ];
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Desktop() {
     const [openWindows, setOpenWindows] = useState<string[]>([]);
+    const { t } = useLanguage();
+    
+    const DESKTOP_ICONS = [
+        { id: 'about', label: t.desktop.about, icon: '/icons/info.ico' },
+        { id: 'projects', label: t.desktop.projects, icon: '/icons/iexplorer.ico' },
+        { id: 'resume', label: t.desktop.resume, icon: '/icons/PDF.ico' },
+        { id: 'contact', label: t.desktop.contact, icon: '/icons/msn.ico' },
+    ];
 
     useEffect(() => {
         const startupAudio = new Audio('/sounds/startup.mp3');
@@ -41,7 +43,7 @@ export default function Desktop() {
                     key={item.id}
                     icon={item.icon}
                     label={item.label}
-                    onClick={() => handleIconClick(item.id)} // Opens the window
+                    onClick={() => handleIconClick(item.id)}
                 />
             ))}
         </div>
@@ -50,9 +52,9 @@ export default function Desktop() {
 
         {openWindows.includes('resume') && (
             <Window 
-            title="My Resume - Adobe Reader" 
-            icon="/icons/PDF.ico" 
-            onClose={() => handleCloseWindow('resume')}
+                title={`${t.desktop.resume} - Adobe Reader`}
+                icon="/icons/PDF.ico" 
+                onClose={() => handleCloseWindow('resume')}
             >
             <iframe 
                 src="/resume.pdf" 

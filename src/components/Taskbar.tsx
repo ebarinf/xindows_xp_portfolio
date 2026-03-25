@@ -1,9 +1,11 @@
 "use client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Taskbar() {
     const [time, setTime] = useState<string>("");
+    const{t} = useLanguage()
 
     useEffect(() => {
         const updateTime = () => {
@@ -25,7 +27,7 @@ export default function Taskbar() {
             className="text-white font-bold italic text-[17px] tracking-wider pr-1" 
             style={{ textShadow: "1px 1px 2px rgba(0,0,0,0.8)" }}
             >
-            start
+            {t.taskbar.start}
             </span>
         </button>
 
