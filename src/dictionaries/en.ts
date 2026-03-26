@@ -17,6 +17,11 @@ export const en = {
     },
     taskbar: {
         start: "start"
+    },
+    startMenu: {
+    programs: "All Programs",
+    logOff: "Log Off",
+    turnOff: "Turn Off Computer"
     }
 };
 

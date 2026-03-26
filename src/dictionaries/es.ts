@@ -19,5 +19,10 @@ export const es: Dictionary = {
     },
     taskbar: {
         start: "inicio"
+    },
+    startMenu: {
+        programs: "Todos los programas",
+        logOff: "Cerrar sesión",
+        turnOff: "Apagar equipo"
     }
 };
