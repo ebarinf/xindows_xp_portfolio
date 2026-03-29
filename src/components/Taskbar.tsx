@@ -5,7 +5,10 @@ import { useLanguage } from "../context/LanguageContext";
 // 1. Import the new Start Menu
 import StartMenu from "./StartMenu"; 
 
-export default function Taskbar() {
+interface TaskbarProps {
+    onOpenApp: (id: string) => void;
+}
+export default function Taskbar({ onOpenApp }: TaskbarProps) {
     const [time, setTime] = useState<string>("");
     // 2. Add state for the Start Menu
     const [isStartOpen, setIsStartOpen] = useState(false); 
@@ -26,7 +29,7 @@ export default function Taskbar() {
         <div className="absolute bottom-0 left-0 w-full flex select-none z-50 bg-[#1240b9] pb-[env(safe-area-inset-bottom)]">
         
             {/* 3. Render the Start Menu */}
-            <StartMenu isOpen={isStartOpen} onClose={() => setIsStartOpen(false)} />
+            <StartMenu isOpen={isStartOpen} onClose={() => setIsStartOpen(false)} onOpenApp={onOpenApp} />
 
             {/* 4. Update the Start Button to toggle the state */}
             <button 

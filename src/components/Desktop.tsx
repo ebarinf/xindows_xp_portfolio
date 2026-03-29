@@ -64,7 +64,7 @@ export default function Desktop() {
             </Window>
         )}
 
-        <Taskbar />
+        <Taskbar onOpenApp={handleIconClick} />
         </div>
     );
 }

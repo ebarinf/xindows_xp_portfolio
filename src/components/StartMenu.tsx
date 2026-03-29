@@ -6,9 +6,10 @@ import { useLanguage } from "../context/LanguageContext";
 interface StartMenuProps {
     isOpen: boolean;
     onClose: () => void;
+    onOpenApp: (id: string) => void;
 }
 
-export default function StartMenu({ isOpen, onClose }: StartMenuProps) {
+export default function StartMenu({ isOpen, onClose, onOpenApp }: StartMenuProps) {
     const { t } = useLanguage();
 
     if (!isOpen) return null;
@@ -32,7 +33,7 @@ export default function StartMenu({ isOpen, onClose }: StartMenuProps) {
         <div className="flex flex-row h-[350px]">
             
             {/* Left Column (White - Apps) */}
-            <div className="w-1/2 bg-white flex flex-col p-1">
+            <div className="w-1/2 bg-white flex flex-col p-1 text-black">
             {/* Main Apps */}
             <div className="flex-1">
                 <div className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group">
@@ -51,39 +52,42 @@ export default function StartMenu({ isOpen, onClose }: StartMenuProps) {
                 </div>
                 
                 {/* Divider */}
-                <div className="h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent my-1" />
+                <div className="h-px bg-linear-to-r from-transparent via-gray-300 to-transparent my-1" />
                 
                 {/* Pinned App */}
-                <div className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group">
-                <Image src="/icons/PDF.ico" alt="Resume" width={30} height={30} />
-                <span className="text-xs group-hover:text-white">{t.desktop.resume}</span>
+                <div 
+                    className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group"
+                    onClick={() => { onOpenApp('resume'); onClose(); }}
+                >
+                    <Image src="/icons/PDF.ico" alt="Resume" width={30} height={30} />
+                    <span className="text-xs group-hover:text-white">{t.desktop.resume}</span>
                 </div>
             </div>
 
-            {/* All Programs */}
-            <div className="h-8 border-t border-gray-200 flex items-center justify-center hover:bg-[#2F71CD] hover:text-white cursor-pointer group mt-auto">
-                <span className="font-bold text-xs">{t.startMenu.programs}</span>
-                <span className="ml-2 text-[#3A801D] group-hover:text-white font-black">▶</span>
-            </div>
+                {/* All Programs */}
+                <div className="h-8 border-t border-gray-200 flex items-center justify-center hover:bg-[#2F71CD] hover:text-white cursor-pointer group mt-auto">
+                    <span className="font-bold text-xs">{t.startMenu.programs}</span>
+                    <span className="ml-2 text-[#3A801D] group-hover:text-white font-black">▶</span>
+                </div>
             </div>
 
             {/* Right Column (Light Blue - System Folders) */}
             <div className="w-1/2 bg-[#D3E5FA] border-l border-[#A4CBBF] p-1 flex flex-col">
-            <div className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer">
-                <Image src="/icons/info.ico" alt="About" width={24} height={24} />
-                <span className="font-bold text-xs text-[#00136B] hover:text-white">{t.desktop.about}</span>
-            </div>
-            <div className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer">
-                <Image src="/icons/iexplorer.ico" alt="Projects" width={24} height={24} />
-                <span className="font-bold text-xs text-[#00136B] hover:text-white">{t.desktop.projects}</span>
-            </div>
-            
-            <div className="h-[1px] bg-gradient-to-r from-transparent via-[#86B3E6] to-transparent my-1" />
-            
-            <div className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer">
-                <Image src="/icons/msn.ico" alt="Contact" width={24} height={24} />
-                <span className="text-xs text-[#00136B] hover:text-white">{t.desktop.contact}</span>
-            </div>
+                <div onClick={() => { onOpenApp('about'); onClose(); }} className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group">
+                    <Image src="/icons/info.ico" alt="About" width={24} height={24} />
+                    <span className="font-bold text-xs text-[#00136B] group-hover:text-white">{t.desktop.about}</span>
+                </div>
+                <div onClick={() => { onOpenApp('projects'); onClose(); }} className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group">
+                    <Image src="/icons/iexplorer.ico" alt="Projects" width={24} height={24} />
+                    <span className="font-bold text-xs text-[#00136B] group-hover:text-white">{t.desktop.projects}</span>
+                </div>
+                
+                <div className="h-[1px] bg-gradient-to-r from-transparent via-[#86B3E6] to-transparent my-1" />
+                
+                <div onClick={() => { onOpenApp('contact'); onClose(); }} className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group">
+                    <Image src="/icons/msn.ico" alt="Contact" width={24} height={24} />
+                    <span className="text-xs text-[#00136B] group-hover:text-white">{t.desktop.contact}</span>
+                </div>
             </div>
         </div>
 
