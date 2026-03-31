@@ -4,6 +4,7 @@ import DesktopIcon from "../components/DesktopIcon";
 import Taskbar from "../components/Taskbar";
 import Window from "../components/Window";
 import { useLanguage } from "../context/LanguageContext";
+import Contact from "./Contact";
 
 export default function Desktop() {
     const [openWindows, setOpenWindows] = useState<string[]>([]);
@@ -61,6 +62,16 @@ export default function Desktop() {
                 className="w-full h-full border-none"
                 title="Resume PDF"
             />
+            </Window>
+        )}
+
+        {openWindows.includes('contact') && (
+            <Window 
+                title={`${t.desktop.contact}`}
+                icon="/icons/msn.ico" 
+                onClose={() => handleCloseWindow('contact')}
+            >
+                <Contact/>
             </Window>
         )}
 

@@ -70,7 +70,7 @@ export default function Window({
 
     return (
         <div 
-        className="absolute w-[100%] md:w-[60%] h-[80%] bg-[#ECE9D8] border-[3px] border-[#0054E3] rounded-t-lg shadow-2xl flex flex-col overflow-hidden z-40"
+        className="absolute w-full md:w-[60%] h-[80%] bg-[#ECE9D8] border-[3px] border-[#0054E3] rounded-t-lg shadow-2xl flex flex-col overflow-hidden z-40"
         style={{ 
             left: `${position.x}px`, 
             top: `${position.y}px`,
@@ -82,7 +82,7 @@ export default function Window({
         {/* --- TITLE BAR (The Drag Handle) --- */}
         <div 
             onPointerDown={handlePointerDown}
-            className={`bg-gradient-to-r from-[#0058E6] via-[#3A93FF] to-[#0058E6] h-8 flex justify-between items-center px-1 select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+            className={`bg-linear-to-r from-[#0058E6] via-[#3A93FF] to-[#0058E6] h-8 flex justify-between items-center px-1 select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
         >
             
             {/* Window Title & Icon */}

@@ -22,11 +22,11 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
         <div className="h-16 md:h-24 bg-[#00309C] w-full shadow-md border-b-2 border-[#6384D3]" />
 
         {/* --- MIDDLE SECTION --- */}
-        <div className="flex-1 flex items-center justify-center bg-gradient-to-r from-[#3B55A5] via-[#6085E0] to-[#3B55A5] relative px-4">
+        <div className="flex-1 flex items-center justify-center bg-linear-to-r from-[#3B55A5] via-[#6085E0] to-[#3B55A5] relative px-4">
             
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
-                            w-[70%] h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent
-                            md:w-[1px] md:h-[70%] md:bg-gradient-to-b" />
+                            w-[70%] h-px bg-linear-to-r from-transparent via-white/30 to-transparent
+                            md:w-px md:h-[70%] md:bg-linear-to-b" />
 
             <div className="w-full max-w-[800px] flex flex-col md:flex-row items-center z-10 gap-16 md:gap-0">
             
