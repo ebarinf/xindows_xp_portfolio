@@ -20,7 +20,18 @@ export default function Window({
     initialY = 50
     }: WindowProps) {
     
-    const [position, setPosition] = useState({ x: initialX, y: initialY });
+    const [position, setPosition] = useState(() => {
+        if (typeof window !== "undefined") {
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            if (screenWidth > 768) {
+                const centerX = screenWidth * 0.2;
+                const centerY = screenHeight * 0.1;
+                return { x: centerX, y: centerY };
+            }
+        }
+        return { x: initialX, y: initialY };
+    });
     const [isDragging, setIsDragging] = useState(false);
     
     const dragRef = useRef({ startX: 0, startY: 0, startPosX: 0, startPosY: 0 });
