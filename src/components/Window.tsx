@@ -9,6 +9,10 @@ interface WindowProps {
     children: React.ReactNode;
     initialX?: number;
     initialY?: number;
+    onMinimize?: () => void;
+    isHidden?: boolean;
+    isActive?: boolean;
+    onFocus?: () => void;
     }
 
 export default function Window({ 
@@ -17,7 +21,11 @@ export default function Window({
     onClose, 
     children, 
     initialX = 0,
-    initialY = 50
+    initialY = 50,
+    onMinimize,
+    isHidden,
+    isActive,
+    onFocus
     }: WindowProps) {
     
     const [position, setPosition] = useState(() => {
@@ -33,11 +41,11 @@ export default function Window({
         return { x: initialX, y: initialY };
     });
     const [isDragging, setIsDragging] = useState(false);
+    const [isMaximized, setIsMaximized] = useState(false);
     
     const dragRef = useRef({ startX: 0, startY: 0, startPosX: 0, startPosY: 0 });
 
     const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-        // Only allow left-clicks to drag (button 0)
         if (e.button !== 0) return;
         
         setIsDragging(true);
@@ -81,11 +89,11 @@ export default function Window({
 
     return (
         <div 
-        className="absolute w-full md:w-[60%] h-[80%] bg-[#ECE9D8] border-[3px] border-[#0054E3] rounded-t-lg shadow-2xl flex flex-col overflow-hidden z-40"
-        style={{ 
+        onPointerDownCapture={onFocus}
+        className={`absolute bg-[#ECE9D8] border-[3px] border-[#0054E3] rounded-t-lg shadow-2xl flex flex-col overflow-hidden ${isActive ? 'z-50' : 'z-40'} ${isHidden ? 'hidden' : ''} ${isMaximized ? 'w-full h-[calc(100%-30px)] !left-0 !top-0 rounded-none' : 'w-full md:w-[60%] h-[80%]'}`}
+        style={isMaximized ? {} : { 
             left: `${position.x}px`, 
             top: `${position.y}px`,
-            // Prevent highlighting text on the page accidentally while dragging
             userSelect: isDragging ? 'none' : 'auto' 
         }}
         >
@@ -104,15 +112,30 @@ export default function Window({
 
             {/* Window Controls */}
             <div className="flex gap-[2px]">
-            <button 
-                // We use onPointerDown and stopPropagation so clicking 'Close' doesn't trigger a 'Drag'
-                onPointerDown={(e) => e.stopPropagation()} 
-                onClick={onClose} 
-                className="bg-[#E81123] border border-white/40 rounded-[3px] w-[22px] h-[22px] flex items-center justify-center text-white font-bold text-xs shadow-[inset_0px_1px_1px_rgba(255,255,255,0.7)] hover:brightness-110 active:brightness-90 transition-all cursor-default"
-                aria-label="Close"
-            >
-                ×
-            </button>
+                <button 
+                    onPointerDown={(e) => e.stopPropagation()} 
+                    onClick={onMinimize} 
+                    className="bg-[#245EDC] border border-white/40 rounded-[3px] w-[22px] h-[22px] flex items-center justify-center text-white font-bold text-xs shadow-[inset_0px_1px_1px_rgba(255,255,255,0.7)] hover:brightness-110 active:brightness-90 transition-all cursor-default pb-2"
+                    aria-label="Minimize"
+                >
+                    _
+                </button>
+                <button 
+                    onPointerDown={(e) => e.stopPropagation()} 
+                    onClick={() => setIsMaximized(!isMaximized)} 
+                    className="bg-[#245EDC] border border-white/40 rounded-[3px] w-[22px] h-[22px] flex items-center justify-center text-white font-bold text-[10px] shadow-[inset_0px_1px_1px_rgba(255,255,255,0.7)] hover:brightness-110 active:brightness-90 transition-all cursor-default"
+                    aria-label="Maximize"
+                >
+                    {isMaximized ? '❐' : '□'}
+                </button>
+                <button 
+                    onPointerDown={(e) => e.stopPropagation()} 
+                    onClick={onClose} 
+                    className="bg-[#E81123] border border-white/40 rounded-[3px] w-[22px] h-[22px] flex items-center justify-center text-white font-bold text-xs shadow-[inset_0px_1px_1px_rgba(255,255,255,0.7)] hover:brightness-110 active:brightness-90 transition-all cursor-default"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
             </div>
         </div>
 

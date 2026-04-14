@@ -7,9 +7,12 @@ import StartMenu from "./StartMenu";
 
 interface TaskbarProps {
     onOpenApp: (id: string) => void;
+    activeWindows?: { id: string; label: string; icon: string; isMinimized: boolean }[];
+    onTabClick?: (id: string) => void;
+    activeWindowId?: string | null;
 }
-export default function Taskbar({ onOpenApp }: TaskbarProps) {
-    const [time, setTime] = useState<string>("");
+
+export default function Taskbar({ onOpenApp, activeWindows = [], onTabClick, activeWindowId }: TaskbarProps) {    const [time, setTime] = useState<string>("");
     // 2. Add state for the Start Menu
     const [isStartOpen, setIsStartOpen] = useState(false); 
     const { t } = useLanguage();
@@ -64,7 +67,7 @@ export default function Taskbar({ onOpenApp }: TaskbarProps) {
             <button 
                 ref={buttonRef}
                 onClick={() => setIsStartOpen(!isStartOpen)}
-                className={`h-[30px] flex items-center justify-center gap-1 px-3 pr-4 bg-linear-to-b from-[#3c8939] via-[#4db047] to-[#2a7326] rounded-tr-[15px] rounded-br-[15px] border-t border-t-[#8ae87f] shadow-[inset_0_0_2px_rgba(255,255,255,0.4),3px_0_4px_rgba(0,0,0,0.3)] hover:brightness-110 active:brightness-90 transition-all z-20 ${isStartOpen ? 'brightness-90 inset-shadow-inner' : ''}`}
+                className={`h-[30px] flex items-center justify-center gap-1 px-3 pr-4 bg-linear-to-b from-[#3c8939] via-[#4db047] to-[#2a7326] rounded-r-[10px] border-t border-t-[#8ae87f] shadow-[inset_0_0_2px_rgba(255,255,255,0.4),3px_0_4px_rgba(0,0,0,0.3)] hover:brightness-110 active:brightness-90 transition-all z-20 ${isStartOpen ? 'brightness-90 inset-shadow-inner' : ''}`}
             >
                 <Image src="/icons/windows_xp_classic.ico" alt="Start" width={18} height={18} className="drop-shadow-md" />
                 <span 
@@ -75,8 +78,26 @@ export default function Taskbar({ onOpenApp }: TaskbarProps) {
                 </span>
             </button>
 
-            {/* MAIN TASKBAR BACKGROUND */}
-            <div className="flex-1 h-[30px] bg-linear-to-b from-[#245edc] via-[#3f7cf3] to-[#1240b9] border-t border-t-[#91a6f3] flex items-center px-4 z-10 -ml-3">
+            {/* MAIN TASKBAR BACKGROUND & TABS */}
+            <div className="flex-1 h-[30px] bg-linear-to-b from-[#245edc] via-[#3f7cf3] to-[#1240b9] pb-px border-t-[1px] border-t-[#91a6f3] flex items-center px-2 z-10 -ml-2 gap-1 overflow-x-auto">
+                {activeWindows.map((win) => {
+                    const isTabActive = activeWindowId === win.id && !win.isMinimized;
+                    
+                    return (
+                    <div 
+                        key={win.id}
+                        onClick={() => onTabClick && onTabClick(win.id)}
+                        className={`flex items-center gap-1 px-2 h-[26px] w-[150px] flex-shrink-0 rounded-sm cursor-default select-none text-white text-xs border border-[#1A3B8B] transition-all
+                        ${isTabActive 
+                            ? 'bg-gradient-to-b from-[#1C4199] to-[#132C66] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.5)] font-normal' 
+                            : 'bg-gradient-to-b from-[#3A6EE0] to-[#2857C4] shadow-[inset_1px_1px_1px_rgba(255,255,255,0.3)] hover:brightness-110 font-normal'
+                        }`}
+                    >
+                        <Image src={win.icon} alt={win.label} width={14} height={14} className="drop-shadow-sm flex-shrink-0" />
+                        <span className="truncate">{win.label}</span>
+                    </div>
+                    );
+                })}
             </div>
 
             {/* SYSTEM TRAY */}

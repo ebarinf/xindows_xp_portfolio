@@ -24,9 +24,8 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
         {/* --- MIDDLE SECTION --- */}
         <div className="flex-1 flex items-center justify-center bg-linear-to-r from-[#3B55A5] via-[#6085E0] to-[#3B55A5] relative px-4">
             
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
-                            w-[70%] h-px bg-linear-to-r from-transparent via-white/30 to-transparent
-                            md:w-px md:h-[70%] md:bg-linear-to-b" />
+            <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
+                w-px h-[70%] bg-linear-to-b from-transparent via-white/30 to-transparent" />
 
             <div className="w-full max-w-[800px] flex flex-col md:flex-row items-center z-10 gap-16 md:gap-0">
             
@@ -52,7 +51,7 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
             </div>
 
             {/* RIGHT COLUMN: User Accounts */}
-            <div className="w-full md:w-1/2 md:pl-16 flex flex-col items-center md:items-start gap-4 md:gap-8">
+            <div className="w-full md:w-1/2 md:pl-16 flex flex-col items-center md:items-start gap-1 md:gap-8 mt-4 md:mt-0">
                 
                 {/* 1. ESPAÑOL PROFILE */}
                 <div 
