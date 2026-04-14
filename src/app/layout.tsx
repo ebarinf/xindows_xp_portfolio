@@ -19,6 +19,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Eduardo XP - Portfolio",
   description: "My Windows XP Portfolio",
+  icons: {
+    icon: "/icons/windows_xp_classic.ico",
+  },
 };
 
 export default function RootLayout({
@@ -31,7 +34,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* 2. Wrap the children in the Language Provider! */}
         <LanguageProvider>
           {children}
         </LanguageProvider>
