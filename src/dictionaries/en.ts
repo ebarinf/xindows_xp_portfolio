@@ -31,6 +31,27 @@ export const en = {
         languages: "Languages & Frameworks",
         tools: "Tools & Databases",
         learnMore: "Learn more about Eduardo"
+    },
+    projectsWindow: {
+        title: "My Projects",
+        address: "C:\\Documents and Settings\\Eduardo\\My Projects",
+        paneTasks: "File and Folder Tasks",
+        paneOther: "Other Places",
+        paneDetails: "Details",
+        taskNew: "Make a new folder",
+        taskWeb: "Publish this folder to the Web",
+        taskShare: "Share this folder",
+        otherDesktop: "Desktop",
+        otherDocs: "My Documents",
+        otherComputer: "My Computer",
+        itemCount: "4 objects",
+        clippyFuture: "Future Clippy AI zone..."
+    },
+    clippy: {
+        greeting: "It looks like you're viewing Eduardo's portfolio. Would you like some help?",
+        placeholder: "Type a message...",
+        typing: "Clippy is typing...",
+        error: "Oops! My paperclip wires got crossed."
     }
 };
 

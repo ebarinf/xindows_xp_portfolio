@@ -6,18 +6,22 @@ import Window from "../components/Window";
 import { useLanguage } from "../context/LanguageContext";
 import Contact from "./Contact";
 import About from "./About";
+import Projects from "./Projects";
+import Clippy from "./Clippy"
 
 export default function Desktop() {
     const [openWindows, setOpenWindows] = useState<string[]>([]);
     const [minimizedWindows, setMinimizedWindows] = useState<string[]>([]);
     const [activeWindow, setActiveWindow] = useState<string | null>(null);
     const { t } = useLanguage();
+    const [isClippyOpen, setIsClippyOpen] = useState(false);
     
     const DESKTOP_ICONS = [
         { id: 'about', label: t.desktop.about, icon: '/icons/info.ico' },
         { id: 'projects', label: t.desktop.projects, icon: '/icons/iexplorer.ico' },
         { id: 'resume', label: t.desktop.resume, icon: '/icons/PDF.ico' },
         { id: 'contact', label: t.desktop.contact, icon: '/icons/msn.ico' },
+        { id: 'clippy', label: 'Clippy AI', icon: '/icons/clippy.ico' },
     ];
 
     useEffect(() => {
@@ -28,6 +32,11 @@ export default function Desktop() {
     }, []);
 
     const handleIconClick = (id: string) => {
+        if (id === 'clippy') {
+            setIsClippyOpen(true);
+            return;
+        }
+
         if (!openWindows.includes(id)) {
             setOpenWindows([...openWindows, id]);
         } else if (minimizedWindows.includes(id)) {
@@ -138,6 +147,24 @@ export default function Desktop() {
             >
                 <About/>
             </Window>
+        )}
+
+        {openWindows.includes('projects') && (
+            <Window 
+                title={`${t.desktop.projects}`}
+                icon="/icons/iexplorer.ico" 
+                onClose={() => handleCloseWindow('projects')}
+                onMinimize={() => handleMinimizeWindow('projects')}
+                isHidden={minimizedWindows.includes('projects')}
+                isActive={activeWindow === 'projects'}
+                onFocus={() => setActiveWindow('projects')}
+            >
+                <Projects onOpenClippy={() => setIsClippyOpen(true)}/>
+            </Window>
+        )}
+
+        {isClippyOpen && (
+            <Clippy onClose={() => setIsClippyOpen(false)} />
         )}
 
         <Taskbar 

@@ -33,5 +33,26 @@ export const es: Dictionary = {
         languages: "Lenguajes y Frameworks",
         tools: "Herramientas y Bases de Datos",
         learnMore: "Más información sobre Eduardo"
+    },
+    projectsWindow: {
+        title: "Mis Proyectos",
+        address: "C:\\Documents and Settings\\Eduardo\\Mis Proyectos",
+        paneTasks: "Tareas de archivo y carpeta",
+        paneOther: "Otros sitios",
+        paneDetails: "Detalles",
+        taskNew: "Crear nueva carpeta",
+        taskWeb: "Publicar esta carpeta en la Web",
+        taskShare: "Compartir esta carpeta",
+        otherDesktop: "Escritorio",
+        otherDocs: "Mis documentos",
+        otherComputer: "Mi PC",
+        itemCount: "4 objetos",
+        clippyFuture: "Zona futura de Clippy AI..."
+    },
+    clippy: {
+        greeting: "Parece que estás viendo el portafolio de Eduardo. ¿Te gustaría recibir ayuda?",
+        placeholder: "Escribe un mensaje...",
+        typing: "Clippy está escribiendo...",
+        error: "¡Ups! Mis cables de clip se cruzaron."
     }
 };

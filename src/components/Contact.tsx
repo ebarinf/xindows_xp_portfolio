@@ -66,7 +66,7 @@ export default function Contact() {
                 
             <div className="w-px h-8 bg-gray-400 shadow-[1px_0_0_white]" /> {/* Divider */}
 
-            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:border-gray-400 border border-transparent p-1 rounded transition-all active:bg-gray-200">
+            <a href="https://www.linkedin.com/in/eduardo-antonio-barrientos-díaz/" target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:border-gray-400 border border-transparent p-1 rounded transition-all active:bg-gray-200">
             {/* Assuming you have a linkedin icon, or replace with another icon */}
             <div className="w-6 h-6 bg-[#0077B5] text-white font-bold text-xs flex items-center justify-center rounded-sm">in</div>
             <span className="text-xs text-gray-600">LinkedIn</span>

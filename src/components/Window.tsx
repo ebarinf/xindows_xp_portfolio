@@ -115,7 +115,7 @@ export default function Window({
                 <button 
                     onPointerDown={(e) => e.stopPropagation()} 
                     onClick={onMinimize} 
-                    className="bg-[#245EDC] border border-white/40 rounded-[3px] w-[22px] h-[22px] flex items-center justify-center text-white font-bold text-xs shadow-[inset_0px_1px_1px_rgba(255,255,255,0.7)] hover:brightness-110 active:brightness-90 transition-all cursor-default pb-2"
+                    className="bg-[#245EDC] border border-white/40 rounded-[3px] w-[22px] h-[22px] flex items-center justify-center text-white font-bold text-[12px] shadow-[inset_0px_1px_1px_rgba(255,255,255,0.7)] hover:brightness-110 active:brightness-90 transition-all cursor-default pb-2"
                     aria-label="Minimize"
                 >
                     _
@@ -123,7 +123,7 @@ export default function Window({
                 <button 
                     onPointerDown={(e) => e.stopPropagation()} 
                     onClick={() => setIsMaximized(!isMaximized)} 
-                    className="bg-[#245EDC] border border-white/40 rounded-[3px] w-[22px] h-[22px] flex items-center justify-center text-white font-bold text-[10px] shadow-[inset_0px_1px_1px_rgba(255,255,255,0.7)] hover:brightness-110 active:brightness-90 transition-all cursor-default"
+                    className="bg-[#245EDC] border border-white/40 rounded-[3px] w-[22px] h-[22px] flex items-center justify-center text-white text-[18px] shadow-[inset_0px_1px_1px_rgba(255,255,255,0.7)] hover:brightness-110 active:brightness-90 transition-all cursor-default"
                     aria-label="Maximize"
                 >
                     {isMaximized ? '❐' : '□'}
@@ -131,7 +131,7 @@ export default function Window({
                 <button 
                     onPointerDown={(e) => e.stopPropagation()} 
                     onClick={onClose} 
-                    className="bg-[#E81123] border border-white/40 rounded-[3px] w-[22px] h-[22px] flex items-center justify-center text-white font-bold text-xs shadow-[inset_0px_1px_1px_rgba(255,255,255,0.7)] hover:brightness-110 active:brightness-90 transition-all cursor-default"
+                    className="bg-[#E81123] border border-white/40 rounded-[3px] w-[22px] h-[22px] flex items-center justify-center text-white text-[20px] shadow-[inset_0px_1px_1px_rgba(255,255,255,0.7)] hover:brightness-110 active:brightness-90 transition-all cursor-default"
                     aria-label="Close"
                 >
                     ×
