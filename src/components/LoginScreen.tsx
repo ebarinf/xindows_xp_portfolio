@@ -60,7 +60,7 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
                 >
                 <div className="relative w-16 h-16 md:w-20 md:h-20 rounded border-[3px] border-white/60 bg-yellow-200 overflow-hidden shadow-lg group-hover:border-[#F7D866]">
                     <div className="w-full h-full flex items-center justify-center bg-[#D4E4F7]">
-                        <Image src="/icons/msn.ico" alt="Español" width={40} height={40} />
+                        <Image src="/icons/spanish.jpg" alt="Español" width={80} height={80} />
                     </div>
                 </div>
                 <div className="flex flex-col text-center md:text-left">
@@ -80,7 +80,7 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
                 >
                 <div className="relative w-16 h-16 md:w-20 md:h-20 rounded border-[3px] border-white/60 bg-yellow-200 overflow-hidden shadow-lg group-hover:border-[#F7D866]">
                     <div className="w-full h-full flex items-center justify-center bg-[#D4E4F7]">
-                        <Image src="/icons/msn.ico" alt="English" width={40} height={40} />
+                        <Image src="/icons/english.jpg" alt="English" width={80} height={80} />
                     </div>
                 </div>
                 <div className="flex flex-col text-center md:text-left">

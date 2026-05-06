@@ -53,10 +53,10 @@ export default function Clippy({ onClose }: { onClose: () => void }) {
             if (response.ok) {
                 setMessages(prev => [...prev, { sender: 'clippy', text: data.text }]);
             } else {
-                setMessages(prev => [...prev, { sender: 'clippy', text: "Sorry, I hit a snag. Please try again!" }]);
+                setMessages(prev => [...prev, { sender: 'clippy', text: t.clippy.error }]);
             }
         } catch (error) {
-            setMessages(prev => [...prev, { sender: 'clippy', text: "My connection dropped! Check your internet." }]);
+            setMessages(prev => [...prev, { sender: 'clippy', text: t.clippy.error }]);
         } finally {
             setIsLoading(false);
         }

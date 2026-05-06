@@ -53,6 +53,6 @@ export const es: Dictionary = {
         greeting: "Parece que estás viendo el portafolio de Eduardo. ¿Te gustaría recibir ayuda?",
         placeholder: "Escribe un mensaje...",
         typing: "Clippy está escribiendo...",
-        error: "¡Ups! Mis cables de clip se cruzaron."
+        error: "¡Ups! Mis cables de clip se cruzaron. Intentalo de nuevo."
     }
 };

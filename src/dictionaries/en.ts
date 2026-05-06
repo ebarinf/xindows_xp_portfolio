@@ -51,7 +51,7 @@ export const en = {
         greeting: "It looks like you're viewing Eduardo's portfolio. Would you like some help?",
         placeholder: "Type a message...",
         typing: "Clippy is typing...",
-        error: "Oops! My paperclip wires got crossed."
+        error: "Oops! My paperclip wires got crossed. Try again."
     }
 };
 
