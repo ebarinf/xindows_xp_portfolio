@@ -112,29 +112,34 @@ export default function Window({
 
             {/* Window Controls */}
             <div className="flex gap-[2px]">
+                {/* Minimize Button */}
                 <button 
                     onPointerDown={(e) => e.stopPropagation()} 
                     onClick={onMinimize} 
-                    className="bg-[#245EDC] border border-white/40 rounded-[3px] w-[22px] h-[22px] flex items-center justify-center text-white font-bold text-[12px] shadow-[inset_0px_1px_1px_rgba(255,255,255,0.7)] hover:brightness-110 active:brightness-90 transition-all cursor-default pb-2"
+                    className="w-[22px] h-[22px] flex items-center justify-center hover:brightness-110 active:brightness-90 transition-all cursor-default overflow-hidden rounded-[3px]"
                     aria-label="Minimize"
                 >
-                    _
+                    <Image src="/icons/minimize.ico" alt="Minimize" width={22} height={22} unoptimized />
                 </button>
+                
+                {/* Maximize / Restore Button */}
                 <button 
                     onPointerDown={(e) => e.stopPropagation()} 
                     onClick={() => setIsMaximized(!isMaximized)} 
-                    className="bg-[#245EDC] border border-white/40 rounded-[3px] w-[22px] h-[22px] flex items-center justify-center text-white text-[18px] shadow-[inset_0px_1px_1px_rgba(255,255,255,0.7)] hover:brightness-110 active:brightness-90 transition-all cursor-default"
+                    className="w-[22px] h-[22px] flex items-center justify-center hover:brightness-110 active:brightness-90 transition-all cursor-default overflow-hidden rounded-[3px]"
                     aria-label="Maximize"
                 >
-                    {isMaximized ? '❐' : '□'}
+                    <Image src={isMaximized ? "/icons/restore.ico" : "/icons/maximize.ico"} alt={isMaximized ? "Restore" : "Maximize"} width={22} height={22} unoptimized />
                 </button>
+                
+                {/* Close Button */}
                 <button 
                     onPointerDown={(e) => e.stopPropagation()} 
                     onClick={onClose} 
-                    className="bg-[#E81123] border border-white/40 rounded-[3px] w-[22px] h-[22px] flex items-center justify-center text-white text-[20px] shadow-[inset_0px_1px_1px_rgba(255,255,255,0.7)] hover:brightness-110 active:brightness-90 transition-all cursor-default"
+                    className="w-[22px] h-[22px] flex items-center justify-center hover:brightness-110 active:brightness-90 transition-all cursor-default overflow-hidden rounded-[3px]"
                     aria-label="Close"
                 >
-                    ×
+                    <Image src="/icons/close.ico" alt="Close" width={22} height={22} unoptimized />
                 </button>
             </div>
         </div>

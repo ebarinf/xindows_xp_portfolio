@@ -55,7 +55,6 @@ export default function Taskbar({ onOpenApp, activeWindows = [], onTabClick, act
     }, []);
 
     return (
-        // Note: I added 'relative' to this parent div so the absolute StartMenu positions itself relative to the taskbar!
         <div className="absolute bottom-0 left-0 w-full flex select-none z-50 bg-[#1240b9] pb-[env(safe-area-inset-bottom)]">
         
             {/* 3. Render the Start Menu */}

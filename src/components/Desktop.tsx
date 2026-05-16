@@ -18,7 +18,7 @@ export default function Desktop() {
     
     const DESKTOP_ICONS = [
         { id: 'about', label: t.desktop.about, icon: '/icons/info.ico' },
-        { id: 'projects', label: t.desktop.projects, icon: '/icons/iexplorer.ico' },
+        { id: 'projects', label: t.desktop.projects, icon: '/icons/folder.ico' },
         { id: 'resume', label: t.desktop.resume, icon: '/icons/PDF.ico' },
         { id: 'contact', label: t.desktop.contact, icon: '/icons/msn.ico' },
         { id: 'clippy', label: 'Clippy AI', icon: '/icons/clippy.ico' },
@@ -152,7 +152,7 @@ export default function Desktop() {
         {openWindows.includes('projects') && (
             <Window 
                 title={`${t.desktop.projects}`}
-                icon="/icons/iexplorer.ico" 
+                icon="/icons/folder.ico" 
                 onClose={() => handleCloseWindow('projects')}
                 onMinimize={() => handleMinimizeWindow('projects')}
                 isHidden={minimizedWindows.includes('projects')}

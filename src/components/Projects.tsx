@@ -6,11 +6,7 @@ import { useLanguage } from "../context/LanguageContext";
 export default function Projects({ onOpenClippy }: { onOpenClippy?: () => void }) {
     const { t } = useLanguage();
 
-    // Placeholder folders for the empty folder view
     const placeholderItems = [
-        // { id: 'web', label: 'Web Applications', icon: '/icons/folder.ico' },
-        // { id: 'mobile', label: 'Mobile Apps', icon: '/icons/folder.ico' },
-        // { id: 'scripts', label: 'Scripts & Automation', icon: '/icons/folder.ico' },
         { id: 'clippy', label: 'Clippy AI', icon: '/icons/clippy.ico' }
     ];
 
@@ -35,15 +31,6 @@ export default function Projects({ onOpenClippy }: { onOpenClippy?: () => void }
             <div className="flex items-center gap-1 opacity-50 cursor-not-allowed px-2">
                 <Image src="/icons/forward.ico" alt="Send" width={32} height={32} />
             </div>
-            <div className="flex items-center gap-1 opacity-50 cursor-not-allowed px-2 ml-4">
-                {/* Search and Folders icons are standard in XP Explorer as seen in image_11.png */}
-            <Image src="/icons/search.ico" alt="Search" width={16} height={16} className="opacity-60" />
-            <span className="text-xs">Search</span>
-            </div>
-            <div className="flex items-center gap-1 opacity-50 cursor-not-allowed px-2">
-            <Image src="/icons/folders.ico" alt="Folders" width={16} height={16} className="opacity-60" />
-            <span className="text-xs">Folders</span>
-            </div>
         </div>
 
         {/* --- ADDRESS BAR --- */}
@@ -53,8 +40,8 @@ export default function Projects({ onOpenClippy }: { onOpenClippy?: () => void }
                 <Image src="/icons/folder.ico" alt="Folder" width={16} height={16} className="mr-1" />
                 <span className="text-xs text-black">{t.projectsWindow.address}</span>
             </div>
-            <button className="flex items-center gap-1 px-2 text-xs hover:border-gray-400 border border-transparent rounded transition-all">
-                <div className="w-4 h-4 bg-green-600 text-white flex items-center justify-center font-bold text-[10px]">➜</div> Go
+            <button className="disabled flex items-center gap-1 px-2 text-xs border border-transparent rounded transition-all">
+                <div className="w-5 h-5 bg-green-600 text-white flex items-center justify-center font-bold text-[14px]">➜</div> Go
             </button>
         </div>
 
@@ -62,7 +49,7 @@ export default function Projects({ onOpenClippy }: { onOpenClippy?: () => void }
         <div className="flex flex-1 overflow-hidden">
             
             {/* LEFT SIDEBAR (Standard Blue Task Pane based on image_11.png) */}
-            <div className="w-[200px] md:w-[240px] flex-shrink-0 bg-linear-to-b from-[#749AEA] to-[#5B7EDC] p-3 overflow-y-auto hidden sm:flex flex-col gap-4">
+            <div className="w-[200px] md:w-60 shrink-0 bg-linear-to-b from-[#749AEA] to-[#5B7EDC] p-3 overflow-y-auto hidden sm:flex flex-col gap-4">
                 
                 {/* File and Folder Tasks Section (from image_11.png) */}
                 <div className="bg-[#D6E0F5] rounded-tl-[3px] rounded-tr-[3px] shadow-sm flex flex-col overflow-hidden">
@@ -72,15 +59,15 @@ export default function Projects({ onOpenClippy }: { onOpenClippy?: () => void }
                     </div>
                     <div className="p-3 flex flex-col gap-2 text-xs text-[#0C327D]">
                         <span className="flex items-center gap-2 opacity-60 cursor-not-allowed">
-                            <Image src="/icons/folder_new.ico" alt="New Folder" width={16} height={16} className="opacity-60" />
+                            <Image src="/icons/new_folder.ico" alt="New Folder" width={16} height={16} className="opacity-60" />
                             {t.projectsWindow.taskNew}
                         </span>
                         <span className="flex items-center gap-2 opacity-60 cursor-not-allowed">
-                            <Image src="/icons/publish.ico" alt="Publish" width={16} height={16} className="opacity-60" />
+                            <Image src="/icons/web_folder.ico" alt="Publish" width={16} height={16} className="opacity-60" />
                             {t.projectsWindow.taskWeb}
                         </span>
                         <span className="flex items-center gap-2 opacity-60 cursor-not-allowed">
-                            <Image src="/icons/share.ico" alt="Share" width={16} height={16} className="opacity-60" />
+                            <Image src="/icons/share_folder.ico" alt="Share" width={16} height={16} className="opacity-60" />
                             {t.projectsWindow.taskShare}
                         </span>
                     </div>
@@ -97,7 +84,7 @@ export default function Projects({ onOpenClippy }: { onOpenClippy?: () => void }
                             {t.projectsWindow.otherDesktop}
                         </span>
                         <span className="flex items-center gap-2 opacity-60 cursor-not-allowed">
-                            <Image src="/icons/mydocuments.ico" alt="Documents" width={16} height={16} className="opacity-60" />
+                            <Image src="/icons/folder.ico" alt="Documents" width={16} height={16} className="opacity-60" />
                             {t.projectsWindow.otherDocs}
                         </span>
                         <span className="flex items-center gap-2 opacity-60 cursor-not-allowed">
