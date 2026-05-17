@@ -15,6 +15,10 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
         onLogin();      
     };
 
+    const handleRestart = () => {
+        window.location.reload(); 
+    };
+
     return (
         <div className="h-screen w-screen flex flex-col font-sans select-none overflow-hidden bg-[#5A7EDC]">
         
@@ -109,13 +113,14 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
             </span>
             </div>
 
-            <div className="hidden md:flex items-center gap-3 cursor-pointer hover:bg-white/10 px-3 py-2 rounded transition-colors">
-            <div className="p-1 bg-[#E25439] rounded border border-white/30 shadow-sm">
-                <Image src="/icons/poweroff.ico" alt="shutdown" width={20} height={20} />
-            </div>
-            <span className="text-white font-medium text-lg drop-shadow-md">
-                {t.login.restart}
-            </span>
+            <div className="hidden md:flex items-center gap-3 cursor-pointer hover:bg-white/10 px-3 py-2 rounded transition-colors"
+            onClick={handleRestart}>
+                <div>
+                    <Image src="/icons/poweroff.ico" alt="shutdown" width={24} height={24} />
+                </div>
+                <span className="text-white font-medium text-lg drop-shadow-md">
+                    {t.login.restart}
+                </span>
             </div>
             
             <div className="hidden md:block text-white/60 text-sm max-w-[300px] leading-tight text-right">

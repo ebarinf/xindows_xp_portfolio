@@ -10,9 +10,10 @@ interface TaskbarProps {
     activeWindows?: { id: string; label: string; icon: string; isMinimized: boolean }[];
     onTabClick?: (id: string) => void;
     activeWindowId?: string | null;
+    onLogOff: () => void;
 }
 
-export default function Taskbar({ onOpenApp, activeWindows = [], onTabClick, activeWindowId }: TaskbarProps) {    const [time, setTime] = useState<string>("");
+export default function Taskbar({ onOpenApp, activeWindows = [], onTabClick, activeWindowId, onLogOff }: TaskbarProps) {    const [time, setTime] = useState<string>("");
     // 2. Add state for the Start Menu
     const [isStartOpen, setIsStartOpen] = useState(false); 
     const { t } = useLanguage();
@@ -21,17 +22,11 @@ export default function Taskbar({ onOpenApp, activeWindows = [], onTabClick, act
 
     useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-        // If the menu is closed, do nothing
         if (!isStartOpen) return;
-        
         const target = event.target as Node;
-        
-        // If the click is INSIDE the menu, or ON the start button, do nothing
         if (menuRef.current?.contains(target) || buttonRef.current?.contains(target)) {
             return;
         }
-        
-        // Otherwise, close the menu!
         setIsStartOpen(false);
         };
 
@@ -57,12 +52,15 @@ export default function Taskbar({ onOpenApp, activeWindows = [], onTabClick, act
     return (
         <div className="absolute bottom-0 left-0 w-full flex select-none z-50 bg-[#1240b9] pb-[env(safe-area-inset-bottom)]">
         
-            {/* 3. Render the Start Menu */}
             <div ref={menuRef}>
-                <StartMenu isOpen={isStartOpen} onClose={() => setIsStartOpen(false)} onOpenApp={onOpenApp} />
+                <StartMenu 
+                    isOpen={isStartOpen} 
+                    onClose={() => setIsStartOpen(false)}
+                    onOpenApp={onOpenApp} 
+                    onLogOff={onLogOff}
+                />
             </div>
 
-            {/* 4. Update the Start Button to toggle the state */}
             <button 
                 ref={buttonRef}
                 onClick={() => setIsStartOpen(!isStartOpen)}

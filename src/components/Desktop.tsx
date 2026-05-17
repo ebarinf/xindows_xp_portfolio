@@ -9,11 +9,15 @@ import About from "./About";
 import Projects from "./Projects";
 import Clippy from "./Clippy"
 
-export default function Desktop() {
+interface DesktopProps {
+    onLogOff: () => void;
+}
+
+export default function Desktop({ onLogOff }: DesktopProps) {
     const [openWindows, setOpenWindows] = useState<string[]>([]);
     const [minimizedWindows, setMinimizedWindows] = useState<string[]>([]);
     const [activeWindow, setActiveWindow] = useState<string | null>(null);
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const [isClippyOpen, setIsClippyOpen] = useState(false);
     
     const DESKTOP_ICONS = [
@@ -114,7 +118,7 @@ export default function Desktop() {
                 onFocus={() => setActiveWindow('resume')}
             >
             <iframe 
-                src="/resume.pdf" 
+                src={language === 'es' ? "/resume_es.pdf" : "/resume_en.pdf"}
                 className="w-full h-full border-none"
                 title="Resume PDF"
             />
@@ -172,6 +176,7 @@ export default function Desktop() {
             activeWindows={activeTaskbarWindows}
             onTabClick={handleTaskbarTabClick}
             activeWindowId={activeWindow}
+            onLogOff={onLogOff}
         />
         </div>
     );

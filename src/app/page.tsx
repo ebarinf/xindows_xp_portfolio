@@ -18,6 +18,10 @@ export default function Home() {
     setSystemState("desktop");
   };
 
+  const handleLogOff = () => {
+    setSystemState("login");
+  };
+
   return (
     <main className="h-screen w-screen overflow-hidden bg-black font-sans">
       {systemState === "boot" && (
@@ -29,7 +33,7 @@ export default function Home() {
       )}
 
       {systemState === "desktop" && (
-        <Desktop/>
+        <Desktop onLogOff={handleLogOff} />
       )}
     </main>
   );
