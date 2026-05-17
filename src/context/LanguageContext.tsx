@@ -20,7 +20,7 @@ const LanguageContext = createContext<LanguageContextType>({
 
 // 3. Create the Provider Wrapper
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-    const [language, setLanguage] = useState<"en" | "es">("en");
+    const [language, setLanguage] = useState<"en" | "es">("es");
 
     // Automatically switch the active dictionary based on the state
     const t = language === "en" ? en : es;

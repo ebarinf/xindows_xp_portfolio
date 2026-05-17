@@ -8,7 +8,7 @@ export const es: Dictionary = {
         mobileInstruction: "Toca el icono de usuario para comenzar",
         mobileDisclaimer: "Este sitio está optimizado para escritorio. Para la mejor experiencia, por favor míralo en una computadora.",
         restart: "Reiniciar Portafolio",
-        helperText: "Después de iniciar sesión, el sistema es tuyo para explorar. Cada detalle ha sido diseñado con un propósito.",
+        helperText: "Después de iniciar sesión, podrás explorar el sistema. Cada detalle ha sido diseñado con un propósito.",
         clickToLogin: "Haz clic para entrar (Español)"
     },
     desktop: {
