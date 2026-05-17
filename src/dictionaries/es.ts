@@ -26,6 +26,11 @@ export const es: Dictionary = {
         turnOff: "Apagar equipo"
     },
     about: {
+        file: "Archivo",
+        edit: "Edición",
+        view: "Ver",
+        tools1: "Herramientas",
+        help: "Ayuda",
         title: "Sobre Mí",
         bio1: "Soy Eduardo, un Ingeniero Full Stack con gran pasión por la resolución de problemas y la calidad. Me especializo en construir aplicaciones web robustas e interactivas, manejando dependencias complejas para crear soluciones eficientes y escalables tanto en el front-end como en el back-end.",
         bio2: "A lo largo de mi carrera, desde ayudar a implementar sistemas de monitoreo en tiempo real para la industria salmonera en el sur de Chile, hasta ejecutar integraciones en la nube y supervisar a desarrolladores junior, siempre me he enfocado en el impacto que puede tener una buena arquitectura. Me invierto profundamente en todo lo que construyo, asegurando que cumpla con los más altos estándares de rendimiento y experiencia de usuario.",
@@ -54,5 +59,21 @@ export const es: Dictionary = {
         placeholder: "Escribe un mensaje...",
         typing: "Clippy está escribiendo...",
         error: "¡Ups! Mis cables de clip se cruzaron. Intentalo de nuevo."
+    },
+    contact: {
+        file: "Archivo",
+        edit: "Edición",
+        view: "Ver",
+        tools: "Herramientas",
+        help: "Ayuda",
+        sendMessage: "Enviar mensaje",
+        to: "Para:",
+        from: "De:",
+        subject: "Asunto:",
+        placeholderFrom: "Tu dirección de correo electrónico",
+        placeholderSubject: "Asunto de tu mensaje",
+        placeholderBody: "Escribe tu mensaje aquí...",
+        statusText: "Redactar un mensaje para Eduardo",
+        sending: "Enviando..."
     }
 };

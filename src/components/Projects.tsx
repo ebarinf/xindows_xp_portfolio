@@ -15,7 +15,7 @@ export default function Projects({ onOpenClippy }: { onOpenClippy?: () => void }
         
         {/* --- MENU BAR --- */}
         <div className="flex gap-4 px-2 py-1 text-xs text-black border-b border-white shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
-            <span className="text-gray-400 px-1 cursor-default">File</span>
+            <span className="text-gray-400 px-1 cursor-default">{t.contact.file}</span>
             <span className="text-gray-400 px-1 cursor-default">Edit</span>
             <span className="text-gray-400 px-1 cursor-default">View</span>
             <span className="text-gray-400 px-1 cursor-default">Favorites</span>

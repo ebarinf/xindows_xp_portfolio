@@ -11,22 +11,20 @@ export default function About() {
         
         {/* --- MENU BAR --- */}
         <div className="flex gap-4 px-2 py-1 text-xs text-black border-b border-white shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
-            <span className="text-gray-400 px-1 cursor-default">File</span>
-            <span className="text-gray-400 px-1 cursor-default">Edit</span>
-            <span className="text-gray-400 px-1 cursor-default">View</span>
-            <span className="text-gray-400 px-1 cursor-default">Tools</span>
-            <span className="text-gray-400 px-1 cursor-default">Help</span>
+            <span className="text-gray-400 px-1 cursor-default">{t.about.file}</span>
+            <span className="text-gray-400 px-1 cursor-default">{t.about.edit}</span>
+            <span className="text-gray-400 px-1 cursor-default">{t.about.view}</span>
+            <span className="text-gray-400 px-1 cursor-default">{t.about.tools1}</span>
+            <span className="text-gray-400 px-1 cursor-default">{t.about.help}</span>
         </div>
 
         {/* --- TOOLBAR --- */}
         <div className="flex items-center gap-2 px-2 py-2 border-b border-white shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
             <div className="flex items-center gap-1 opacity-50 cursor-not-allowed px-2">
-            <div className="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center font-bold rotate-180">➜</div>
-            <span className="text-xs">Back</span>
+                <Image src="/icons/back.ico" alt="Send" width={32} height={32} />
             </div>
             <div className="flex items-center gap-1 opacity-50 cursor-not-allowed px-2">
-            <div className="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center font-bold">➜</div>
-            <span className="text-xs">Forward</span>
+                <Image src="/icons/forward.ico" alt="Send" width={32} height={32} />
             </div>
         </div>
 

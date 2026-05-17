@@ -3,12 +3,12 @@
 import Image from "next/image";
 import { useState } from "react";
 import emailjs from '@emailjs/browser';
-// import { useLanguage } from "../context/LanguageContext"; // Uncomment when ready to translate!
+import { useLanguage } from "../context/LanguageContext"; // Uncomment when ready to translate!
 
 export default function Contact() {
     const [formData, setFormData] = useState({ from: "", subject: "", message: "" });
     const [isSending, setIsSending] = useState(false);
-    // const { t } = useLanguage();
+    const { t } = useLanguage();
     const handleSend = () => {
     if (!formData.from || !formData.message) {
         alert("Please enter your email and a message!");
@@ -44,11 +44,11 @@ export default function Contact() {
         
         {/* --- MENU BAR --- */}
         <div className="flex gap-4 px-2 py-1 text-xs text-black border-b border-white shadow-[0_1px_2px_rgba(0,0,0,0.1)]">
-            <span className="text-gray-400 px-1 cursor-default">File</span>
-            <span className="text-gray-400 px-1 cursor-default">Edit</span>
-            <span className="text-gray-400 px-1 cursor-default">View</span>
-            <span className="text-gray-400 px-1 cursor-default">Tools</span>
-            <span className="text-gray-400 px-1 cursor-default">Help</span>
+            <span className="text-gray-400 px-1 cursor-default">{t.contact.file}</span>
+            <span className="text-gray-400 px-1 cursor-default">{t.contact.edit}</span>
+            <span className="text-gray-400 px-1 cursor-default">{t.contact.view}</span>
+            <span className="text-gray-400 px-1 cursor-default">{t.contact.tools}</span>
+            <span className="text-gray-400 px-1 cursor-default">{t.contact.help}</span>
         </div>
 
         {/* --- TOOLBAR --- */}
@@ -60,7 +60,7 @@ export default function Contact() {
             >
                 <Image src="/icons/msn.ico" alt="Send" width={24} height={24} />
                 <span className="text-xs text-gray-600">
-                    {isSending ? "Sending..." : "Send Message"}
+                    {isSending ? t.contact.sending : t.contact.sendMessage}
                 </span>
             </button>
                 
@@ -78,7 +78,7 @@ export default function Contact() {
             
             {/* TO Field (Disabled) */}
             <div className="flex items-center">
-            <span className="w-16 text-right pr-2 text-xs text-gray-600">To:</span>
+            <span className="w-16 text-right pr-2 text-xs text-gray-600">{t.contact.to}</span>
             <div className="flex-1 bg-[#F0F0F0] px-2 py-1 text-xs text-black border-t-gray-500 border-l-gray-500 border-b-white border-r-white border-[1px] shadow-[inset_1px_1px_0_rgba(0,0,0,0.2)]">
                 Eduardo &lt;eduardo.barrientos.inf@gmail.com&gt;
             </div>
@@ -86,10 +86,10 @@ export default function Contact() {
 
             {/* FROM Field */}
             <div className="flex items-center">
-            <span className="w-16 text-right pr-2 text-xs text-gray-600">From:</span>
+            <span className="w-16 text-right pr-2 text-xs text-gray-600">{t.contact.from}</span>
             <input 
                 type="email"
-                placeholder="Your email address"
+                placeholder={t.contact.placeholderFrom}
                 value={formData.from}
                 onChange={(e) => setFormData({ ...formData, from: e.target.value })}
                 className="flex-1 bg-white px-2 py-1 text-xs text-black border-t-gray-500 border-l-gray-500 border-b-white border-r-white border-[1px] shadow-[inset_1px_1px_0_rgba(0,0,0,0.2)] focus:outline-none focus:bg-blue-50"
@@ -98,10 +98,10 @@ export default function Contact() {
 
             {/* SUBJECT Field */}
             <div className="flex items-center">
-            <span className="w-16 text-right pr-2 text-xs text-gray-600">Subject:</span>
+            <span className="w-16 text-right pr-2 text-xs text-gray-600">{t.contact.subject}</span>
             <input 
                 type="text"
-                placeholder="Subject of your message"
+                placeholder={t.contact.placeholderSubject}
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                 className="flex-1 bg-white px-2 py-1 text-xs text-black border-t-gray-500 border-l-gray-500 border-b-white border-r-white border-[1px] shadow-[inset_1px_1px_0_rgba(0,0,0,0.2)] focus:outline-none focus:bg-blue-50"
@@ -110,7 +110,7 @@ export default function Contact() {
 
             {/* MESSAGE AREA */}
             <textarea 
-            placeholder="Write your message here..."
+            placeholder={t.contact.placeholderBody}
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             className="flex-1 mt-2 bg-white p-2 text-xs text-black border-t-gray-500 border-l-gray-500 border-b-white border-r-white border-[2px] shadow-[inset_1px_1px_0_rgba(0,0,0,0.2)] resize-none focus:outline-none focus:bg-blue-50"

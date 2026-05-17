@@ -24,6 +24,11 @@ export const en = {
         turnOff: "Turn Off Computer"
     },
     about: {
+        file: "File",
+        edit: "Edit",
+        view: "View",
+        tools1: "Tools",
+        help: "Help",
         title: "About Me",
         bio1: "I'm Eduardo, a Full Stack Engineer with a strong passion for problem-solving and quality assurance. I specialize in building robust and interactive web applications, handling complex dependencies to create efficient, scalable solutions across both the front-end and back-end.",
         bio2: "Throughout my career—from helping implement real-time monitoring systems for the salmon industry in southern Chile, to executing cloud integrations and mentoring junior developers—I've always focused on the impact good architecture can have. I am deeply invested in whatever I build, ensuring it meets the highest standards of performance and user experience.",
@@ -52,6 +57,22 @@ export const en = {
         placeholder: "Type a message...",
         typing: "Clippy is typing...",
         error: "Oops! My paperclip wires got crossed. Try again."
+    },
+    contact: {
+        file: "File",
+        edit: "Edit",
+        view: "View",
+        tools: "Tools",
+        help: "Help",
+        sendMessage: "Send Message",
+        to: "To:",
+        from: "From:",
+        subject: "Subject:",
+        placeholderFrom: "Your email address",
+        placeholderSubject: "Subject of your message",
+        placeholderBody: "Write your message here...",
+        statusText: "Compose a message to Eduardo",
+        sending: "Sending..."
     }
 };
 
