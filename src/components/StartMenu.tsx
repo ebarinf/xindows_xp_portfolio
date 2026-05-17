@@ -124,7 +124,7 @@ export default function StartMenu({ isOpen, onClose, onOpenApp, onLogOff }: Star
                     <span className="font-bold text-xs text-[#00136B] group-hover:text-white">{t.desktop.about}</span>
                 </div>
                 <div onClick={() => { onOpenApp('projects'); onClose(); }} className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group">
-                    <Image src="/icons/iexplorer.ico" alt="Projects" width={24} height={24} />
+                    <Image src="/icons/folder.ico" alt="Projects" width={24} height={24} />
                     <span className="font-bold text-xs text-[#00136B] group-hover:text-white">{t.desktop.projects}</span>
                 </div>
                 
