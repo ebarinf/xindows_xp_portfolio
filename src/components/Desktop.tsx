@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import DesktopIcon from "../components/DesktopIcon";
 import Taskbar from "../components/Taskbar";
 import Window from "../components/Window";
@@ -8,17 +8,19 @@ import Contact from "./Contact";
 import About from "./About";
 import Projects from "./Projects";
 import Clippy from "./Clippy"
+import { useWindowStore } from "../store/windowStore";
 
 interface DesktopProps {
     onLogOff: () => void;
 }
 
 export default function Desktop({ onLogOff }: DesktopProps) {
-    const [openWindows, setOpenWindows] = useState<string[]>([]);
-    const [minimizedWindows, setMinimizedWindows] = useState<string[]>([]);
-    const [activeWindow, setActiveWindow] = useState<string | null>(null);
+    const openWindows = useWindowStore((s) => s.openWindows);
+    const minimizedWindows = useWindowStore((s) => s.minimizedWindows);
+    const activeWindow = useWindowStore((s) => s.activeWindow);
+    const isClippyOpen = useWindowStore((s) => s.isClippyOpen);
+    const { openWindow, closeWindow, minimizeWindow, focusWindow, setClippyOpen } = useWindowStore();
     const { t, language } = useLanguage();
-    const [isClippyOpen, setIsClippyOpen] = useState(false);
     
     const DESKTOP_ICONS = [
         { id: 'about', label: t.desktop.about, icon: '/icons/info.ico' },
@@ -35,61 +37,6 @@ export default function Desktop({ onLogOff }: DesktopProps) {
         });
     }, []);
 
-    const handleIconClick = (id: string) => {
-        if (id === 'clippy') {
-            setIsClippyOpen(true);
-            return;
-        }
-
-        if (!openWindows.includes(id)) {
-            setOpenWindows([...openWindows, id]);
-        } else if (minimizedWindows.includes(id)) {
-            setMinimizedWindows(minimizedWindows.filter(windowId => windowId !== id));
-        }
-        setActiveWindow(id); // Bring to front
-    };
-
-    const handleCloseWindow = (id: string) => {
-        const newOpen = openWindows.filter(windowId => windowId !== id);
-        setOpenWindows(newOpen);
-        setMinimizedWindows(minimizedWindows.filter(windowId => windowId !== id));
-        
-        if (activeWindow === id) {
-            const available = newOpen.filter(w => !minimizedWindows.includes(w));
-            setActiveWindow(available.length > 0 ? available[available.length - 1] : null);
-        }
-    };
-
-    const handleMinimizeWindow = (id: string) => {
-        if (!minimizedWindows.includes(id)) {
-            setMinimizedWindows([...minimizedWindows, id]);
-        }
-        if (activeWindow === id) setActiveWindow(null);
-    };
-
-    const handleTaskbarTabClick = (id: string) => {
-        if (minimizedWindows.includes(id)) {
-            setMinimizedWindows(minimizedWindows.filter(windowId => windowId !== id));
-            setActiveWindow(id);
-        } else {
-            if (activeWindow === id) {
-                setMinimizedWindows([...minimizedWindows, id]);
-                setActiveWindow(null);
-            } else {
-                setActiveWindow(id);
-            }
-        }
-    };
-
-    const activeTaskbarWindows = openWindows.map(windowId => {
-        const iconData = DESKTOP_ICONS.find(icon => icon.id === windowId)!;
-        
-        return {
-            ...iconData,
-            isMinimized: minimizedWindows.includes(windowId)
-        };
-    });
-
     return (
         <div className="relative h-dvh w-screen overflow-hidden bg-[url('/wallpaper_mobile.png')] md:bg-[url('/wallpaper.png')] bg-cover bg-center bg-no-repeat font-sans">
         
@@ -100,7 +47,7 @@ export default function Desktop({ onLogOff }: DesktopProps) {
                     key={item.id}
                     icon={item.icon}
                     label={item.label}
-                    onClick={() => handleIconClick(item.id)}
+                    onClick={() => item.id === 'clippy' ? setClippyOpen(true) : openWindow(item.id)}
                 />
             ))}
         </div>
@@ -111,11 +58,11 @@ export default function Desktop({ onLogOff }: DesktopProps) {
             <Window 
                 title={`${t.desktop.resume} - Adobe Reader`}
                 icon="/icons/PDF.ico" 
-                onClose={() => handleCloseWindow('resume')}
-                onMinimize={() => handleMinimizeWindow('resume')}
+                onClose={() => closeWindow('resume')}
+                onMinimize={() => minimizeWindow('resume')}
                 isHidden={minimizedWindows.includes('resume')}
                 isActive={activeWindow === 'resume'}
-                onFocus={() => setActiveWindow('resume')}
+                onFocus={() => focusWindow('resume')}
             >
             <iframe 
                 src={language === 'es' ? "/resume_es.pdf" : "/resume_en.pdf"}
@@ -129,11 +76,11 @@ export default function Desktop({ onLogOff }: DesktopProps) {
             <Window 
                 title={`${t.desktop.contact}`}
                 icon="/icons/msn.ico" 
-                onClose={() => handleCloseWindow('contact')}
-                onMinimize={() => handleMinimizeWindow('contact')}
+                onClose={() => closeWindow('contact')}
+                onMinimize={() => minimizeWindow('contact')}
                 isHidden={minimizedWindows.includes('contact')}
                 isActive={activeWindow === 'contact'}
-                onFocus={() => setActiveWindow('contact')}
+                onFocus={() => focusWindow('contact')}
             >
                 <Contact/>
             </Window>
@@ -143,11 +90,11 @@ export default function Desktop({ onLogOff }: DesktopProps) {
             <Window 
                 title={`${t.desktop.about}`}
                 icon="/icons/info.ico" 
-                onClose={() => handleCloseWindow('about')}
-                onMinimize={() => handleMinimizeWindow('about')}
+                onClose={() => closeWindow('about')}
+                onMinimize={() => minimizeWindow('about')}
                 isHidden={minimizedWindows.includes('about')}
                 isActive={activeWindow === 'about'}
-                onFocus={() => setActiveWindow('about')}
+                onFocus={() => focusWindow('about')}
             >
                 <About/>
             </Window>
@@ -157,25 +104,21 @@ export default function Desktop({ onLogOff }: DesktopProps) {
             <Window 
                 title={`${t.desktop.projects}`}
                 icon="/icons/folder.ico" 
-                onClose={() => handleCloseWindow('projects')}
-                onMinimize={() => handleMinimizeWindow('projects')}
+                onClose={() => closeWindow('projects')}
+                onMinimize={() => minimizeWindow('projects')}
                 isHidden={minimizedWindows.includes('projects')}
                 isActive={activeWindow === 'projects'}
-                onFocus={() => setActiveWindow('projects')}
+                onFocus={() => focusWindow('projects')}
             >
-                <Projects onOpenClippy={() => setIsClippyOpen(true)}/>
+                <Projects onOpenClippy={() => setClippyOpen(true)}/>
             </Window>
         )}
 
         {isClippyOpen && (
-            <Clippy onClose={() => setIsClippyOpen(false)} />
+            <Clippy onClose={() => setClippyOpen(false)} />
         )}
 
         <Taskbar 
-            onOpenApp={handleIconClick} 
-            activeWindows={activeTaskbarWindows}
-            onTabClick={handleTaskbarTabClick}
-            activeWindowId={activeWindow}
             onLogOff={onLogOff}
         />
         </div>

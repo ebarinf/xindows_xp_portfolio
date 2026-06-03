@@ -3,18 +3,19 @@
 import Image from "next/image";
 import { useLanguage } from "../context/LanguageContext";
 import { useState } from "react";
+import { useWindowStore } from "../store/windowStore";
 
 interface StartMenuProps {
     isOpen: boolean;
     onClose: () => void;
-    onOpenApp: (id: string) => void;
     onLogOff: () => void;
 }
 
 const handleRestart = () => {
     window.location.reload(); 
 };
-export default function StartMenu({ isOpen, onClose, onOpenApp, onLogOff }: StartMenuProps) {
+export default function StartMenu({ isOpen, onClose, onLogOff }: StartMenuProps) {
+    const { openWindow, setClippyOpen } = useWindowStore();
     const { t } = useLanguage();
 
     const [showAllPrograms, setShowAllPrograms] = useState(false);
@@ -55,7 +56,7 @@ export default function StartMenu({ isOpen, onClose, onOpenApp, onLogOff }: Star
             <div className="flex-1">
                 <div 
                     className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group"
-                    onClick={() => { onOpenApp('clippy'); onClose(); }}
+                    onClick={() => { setClippyOpen(true); onClose(); }}
                 >
                     <Image src="/icons/clippy.ico" alt="Clippy ai" width={30} height={30} />
                     <span className="text-xs group-hover:text-white">Clippy AI</span>
@@ -67,7 +68,7 @@ export default function StartMenu({ isOpen, onClose, onOpenApp, onLogOff }: Star
                 {/* Pinned App */}
                 <div 
                     className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group"
-                    onClick={() => { onOpenApp('resume'); onClose(); }}
+                    onClick={() => { openWindow('resume'); onClose(); }}
                 >
                     <Image src="/icons/PDF.ico" alt="Resume" width={30} height={30} />
                     <span className="text-xs group-hover:text-white">{t.desktop.resume}</span>
@@ -100,7 +101,7 @@ export default function StartMenu({ isOpen, onClose, onOpenApp, onLogOff }: Star
                                         if (prog.url) {
                                             window.open(prog.url, '_blank');
                                         } else {
-                                            onOpenApp(prog.id);
+                                            openWindow(prog.id);
                                         }
                                         onClose();
                                     }}
@@ -119,18 +120,18 @@ export default function StartMenu({ isOpen, onClose, onOpenApp, onLogOff }: Star
 
             {/* Right Column (Light Blue - System Folders) */}
             <div className="w-1/2 bg-[#D3E5FA] border-l border-[#A4CBBF] flex flex-col">
-                <div onClick={() => { onOpenApp('about'); onClose(); }} className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group">
+                <div onClick={() => { openWindow('about'); onClose(); }} className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group">
                     <Image src="/icons/info.ico" alt="About" width={24} height={24} />
                     <span className="font-bold text-xs text-[#00136B] group-hover:text-white">{t.desktop.about}</span>
                 </div>
-                <div onClick={() => { onOpenApp('projects'); onClose(); }} className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group">
+                <div onClick={() => { openWindow('projects'); onClose(); }} className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group">
                     <Image src="/icons/folder.ico" alt="Projects" width={24} height={24} />
                     <span className="font-bold text-xs text-[#00136B] group-hover:text-white">{t.desktop.projects}</span>
                 </div>
                 
                 <div className="h-px bg-linear-to-r from-transparent via-[#86B3E6] to-transparent my-1" />
                 
-                <div onClick={() => { onOpenApp('contact'); onClose(); }} className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group">
+                <div onClick={() => { openWindow('contact'); onClose(); }} className="flex items-center gap-2 p-2 hover:bg-[#2F71CD] hover:text-white cursor-pointer group">
                     <Image src="/icons/msn.ico" alt="Contact" width={24} height={24} />
                     <span className="text-xs text-[#00136B] group-hover:text-white">{t.desktop.contact}</span>
                 </div>
