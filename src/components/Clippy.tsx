@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext"; // Uncomment when ready to translate
+import Image from "next/image";
 
 interface Message {
     sender: 'clippy' | 'user';
@@ -13,6 +13,7 @@ export default function Clippy({ onClose }: { onClose: () => void }) {
     const { language, t } = useLanguage();
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [animation, setAnimation] = useState<'idle' | 'think' | 'atom' | 'confused'>('idle');
     const [messages, setMessages] = useState<Message[]>([
         { sender: 'clippy', text: t.clippy.greeting }
     ]);
@@ -34,6 +35,7 @@ export default function Clippy({ onClose }: { onClose: () => void }) {
         setMessages(prev => [...prev, { sender: 'user', text: userText }]);
         setInput("");
         setIsLoading(true);
+        setAnimation('think');
 
         try {
             // 2. Call our new Gemini API
@@ -52,11 +54,18 @@ export default function Clippy({ onClose }: { onClose: () => void }) {
             // 3. Add Clippy's response to UI
             if (response.ok) {
                 setMessages(prev => [...prev, { sender: 'clippy', text: data.text }]);
+                const techKeywords = ['tech', 'stack', 'react', 'node', 'next', 'angular', 'tailwind', 'mongodb', 'python', 'gcp', 'google cloud', 'frontend', 'backend', 'engineer'];
+                const hasTech = techKeywords.some(kw => data.text.toLowerCase().includes(kw));
+                if (hasTech) {
+                    setAnimation('atom');
+                }
+                setTimeout(() => setAnimation('idle'), 6000);
             } else {
                 setMessages(prev => [...prev, { sender: 'clippy', text: t.clippy.error }]);
             }
         } catch (error) {
             setMessages(prev => [...prev, { sender: 'clippy', text: t.clippy.error }]);
+            setAnimation('confused');
         } finally {
             setIsLoading(false);
         }
@@ -118,12 +127,11 @@ export default function Clippy({ onClose }: { onClose: () => void }) {
         {/* --- CLIPPY CHARACTER --- */}
         <div className="pr-12 pointer-events-none">
             <Image 
-            src="/icons/clippy.gif" 
-            alt="Clippy" 
-            width={200} 
-            height={200} 
-            className="drop-shadow-md"
-            unoptimized
+                src={`/icons/clippy_${animation}.gif`}
+                alt="Clippy" 
+                width={200} 
+                height={200} 
+                className="drop-shadow-md"
             />
         </div>
 

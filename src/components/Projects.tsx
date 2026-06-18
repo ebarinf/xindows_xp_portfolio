@@ -7,7 +7,8 @@ export default function Projects({ onOpenClippy }: { onOpenClippy?: () => void }
     const { t } = useLanguage();
 
     const placeholderItems = [
-        { id: 'clippy', label: 'Clippy AI', icon: '/icons/clippy.ico' }
+        { id: 'clippy', label: 'Clippy AI', icon: '/icons/clippy.ico' },
+        { id: 'undercover', label: 'Undercover Games', icon: '/icons/undercover.ico', url: 'https://undercover-games.vercel.app' }
     ];
 
     return (
@@ -111,13 +112,19 @@ export default function Projects({ onOpenClippy }: { onOpenClippy?: () => void }
             <div className="flex-1 bg-white p-4 overflow-y-auto shadow-[inset_1px_0_5px_rgba(0,0,0,0.1)]">
                 
                 {/* Requested: Initially mostly empty. Display placeholder folder icons as seen in image_11.png. */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-2 gap-y-6">
+                <div className="flex flex-wrap content-start items-start gap-x-6 gap-y-2 p-3">
                     {placeholderItems.map(item => (
                         <div 
                             key={item.id} 
-                            onDoubleClick={() => item.id === 'clippy' && onOpenClippy && onOpenClippy()}
-                            onClick={() => item.id === 'clippy' && onOpenClippy && onOpenClippy()} 
-                            className="flex flex-col items-center text-center gap-1 group opacity-80 hover:opacity-100 cursor-pointer"
+                            onDoubleClick={() => {
+                                if (item.id === 'clippy' && onOpenClippy) onOpenClippy();
+                                if (item.url) window.open(item.url, '_blank');
+                            }}
+                            onClick={() => {
+                                if (item.id === 'clippy' && onOpenClippy) onOpenClippy();
+                                if (item.url) window.open(item.url, '_blank');
+                            }} 
+                            className="flex flex-row items-center gap-2 w-48 group opacity-80 hover:opacity-100 cursor-pointer"
                         >
                             <Image 
                                 src={item.icon} 
@@ -126,7 +133,7 @@ export default function Projects({ onOpenClippy }: { onOpenClippy?: () => void }
                                 height={48} 
                                 className="drop-shadow-sm group-active:brightness-75" 
                             />
-                            <span className="text-xs text-black group-hover:bg-[#316AC5] group-hover:text-white px-1 break-words max-w-[100px]">
+                            <span className="text-sm text-left text-black group-hover:bg-[#316AC5] group-hover:text-white px-1 break-words max-w-[200px]">
                                 {item.label}
                             </span>
                         </div>

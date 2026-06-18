@@ -28,7 +28,8 @@ export default function StartMenu({ isOpen, onClose, onLogOff }: StartMenuProps)
         { id: 'about', label: t.desktop.about, icon: '/icons/info.ico' },
         { id: 'contact', label: t.desktop.contact, icon: '/icons/msn.ico' },
         { id: 'github', label: 'GitHub', icon: '/icons/github.ico', url: "https://github.com/ebarinf" },
-        { id: 'linkedin', label: 'LinkedIn', icon: '/icons/linkedin.ico', url: "https://www.linkedin.com/in/eduardo-antonio-barrientos-díaz/" }
+        { id: 'linkedin', label: 'LinkedIn', icon: '/icons/linkedin.ico', url: "https://www.linkedin.com/in/eduardo-antonio-barrientos-díaz/" },
+        { id: 'undercover', label: 'Undercover Games', icon: '/icons/undercover.ico', url: 'https://undercover-games.vercel.app' }
     ];
 
     if (!isOpen) return null;
